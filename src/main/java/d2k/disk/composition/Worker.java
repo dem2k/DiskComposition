@@ -25,7 +25,7 @@ public class Worker {
 			.getLogger(Worker.class);
 
 	private File dir = null;
-	private int trynum = 999999;
+	private long trynum = 999999;
 	private DiskCapacity capacity = DiskCapacity.DVD_MINUS_R_SL;
 
 	public void setTryNum(int trynum) {
@@ -53,7 +53,9 @@ public class Worker {
 
 		DiskComposition best = new DiskComposition(capacity);
 
-		for (int i = 1; i <= trynum; i++) {
+		long oprc = trynum / 100;
+		long ten = 0;
+		for (long i = 1; i <= trynum; i++) {
 			log.debug("--- iteration {} of {} ---", i, trynum);
 			DiskComposition composition = createCompositions(items);
 			log.debug("1: bytes={}, {}", best.getActualSize(), best);
@@ -63,6 +65,16 @@ public class Worker {
 			if (cmpres < 0) {
 				log.debug("2 > 1");
 				best = composition;
+			}
+
+			// System.out.println(oprc);
+			if (--oprc < 1) {
+				System.out.print(".");
+				oprc = trynum / 100;
+
+				if (++ten % 10 == 0){
+					System.out.print((i  * 100/trynum)+1 + "%");
+				}
 			}
 		}
 
