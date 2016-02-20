@@ -73,7 +73,7 @@ public class Worker {
 	}
 
 	public File moveCompositionToRoot(DiskComposition dvd) {
-		File dest = Paths.get(dir.getAbsolutePath()).getRoot().resolve("ToBurn-" + System.currentTimeMillis()).toFile();
+		File dest = Paths.get(dir.getAbsolutePath()).getRoot().resolve("ZZ_BURN_ME_" + System.currentTimeMillis()).toFile();
 		dvd.getItems().forEach(itm -> {
 			File src = new File(dir.getAbsolutePath() + "/" + itm.getFile());
 			try {
