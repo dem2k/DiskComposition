@@ -1,6 +1,6 @@
 @echo off
-set CLASSPATH=target\classes;config
-for %%i in ("target\dependency\*.jar") do call :addcp %%i
+set CLASSPATH=%~dp0target\classes;%~dp0config
+for %%i in ("%~dp0target\dependency\*.jar") do call :addcp %%i
 java %*
 goto ende
 :addcp

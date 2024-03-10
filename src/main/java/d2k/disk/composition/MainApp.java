@@ -68,7 +68,7 @@ public class MainApp {
 		String ansBurn = System.console().readLine("\ndo you want to burn " + zzburndir.toString() + "? (y/n) : ");
 		if (ansBurn != null && ansBurn.trim().equalsIgnoreCase("y")) {
 			String[] cmd = {"/CDBurnerXP/cdbxpcmd.exe", "--burn-data", "-device:0", "-udf:1.02",
-					"-close", "-folder[\\]:\\" + zzburndir.getAbsolutePath()};
+					"-close", "-folder[\\]:" + zzburndir.getAbsolutePath()};
 			System.out.println(Arrays.asList( cmd));
 			ProcessBuilder pb = new ProcessBuilder(cmd);
 			Process proc = pb.start();
